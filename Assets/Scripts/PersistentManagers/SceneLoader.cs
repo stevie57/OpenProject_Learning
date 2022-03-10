@@ -60,6 +60,7 @@ public class SceneLoader : MonoBehaviour
         {
             Scene scene = SceneManager.GetSceneAt(i);
             string scenePath = scene.path;
+
             for(int j = 0; j < persistentScenes.Count; j++)
             {
                 if(scenePath != persistentScenes[j].ScenePath)
@@ -82,6 +83,7 @@ public class SceneLoader : MonoBehaviour
     {
         //Take the first scene in the array as the scene we want to set active
         _activeScene = scenesToLoad[0];
+
         UnloadScenes();
 
         if (showLoadingScreen)
@@ -104,8 +106,10 @@ public class SceneLoader : MonoBehaviour
         {
             if (IsSceneLoaded(_persistentScenes[i].ScenePath) == false)
             {
+                print($"Persistent Scenes check is false");
                 _scenesToLoadAsyncOperations.Add(SceneManager.LoadSceneAsync(_persistentScenes[i].ScenePath, LoadSceneMode.Additive));
             }
+            print("Persistent scene managers found");
         }
         StartCoroutine(WaitForLoading(showLoadingScreen));
 
@@ -153,7 +157,7 @@ public class SceneLoader : MonoBehaviour
     {
        if(_scenesToUnload != null)
         {
-            for(int i = 0; i < _scenesToUnload.Count; i++)
+            for (int i = 0; i < _scenesToUnload.Count; i++)
             {
                 SceneManager.UnloadSceneAsync(_scenesToUnload[i]);
             }

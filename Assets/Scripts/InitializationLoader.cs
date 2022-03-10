@@ -8,11 +8,12 @@ public class InitializationLoader : MonoBehaviour
     [SerializeField] private GameSceneSO _persistentManagersScene = default;
 
     [Header("Loading Settings")]
-    [SerializeField] private GameSceneSO[] _menuToLoad = default;
+    [SerializeField] private GameSceneSO[] _scenesToLoad = default;
     [SerializeField] private bool _showLoadingScreen = default;
 
     [Header("Broadcast Channel")]
-    [SerializeField] private LoadEventChannelSO _MenuLoadChannel = default; 
+    [SerializeField] private LoadEventChannelSO _menuLoadChannel = default;
+    [SerializeField] private LoadEventChannelSO _levelLoadChannel = default;
 
 
     void Start()
@@ -29,6 +30,7 @@ public class InitializationLoader : MonoBehaviour
             yield return null;
         }
 
-        _MenuLoadChannel.RaiseEvent(_menuToLoad, _showLoadingScreen);
+        _menuLoadChannel.RaiseEvent(_scenesToLoad, _showLoadingScreen);
+        //_levelLoadChannel.RaiseEvent(_scenesToLoad, _showLoadingScreen);
     }
 }

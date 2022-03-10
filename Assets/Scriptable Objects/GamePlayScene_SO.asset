@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c670ed41a674e64b8e099f310df06eb, type: 3}
-  m_Name: MainMenuSO
+  m_Script: {fileID: 11500000, guid: b3d7e7902a4f5454da056762a3061eb6, type: 3}
+  m_Name: GamePlayScene_SO
   m_EditorClassIdentifier: 
-  SceneAsset: {fileID: 102900000, guid: 62e479061f1219a4d8c4682ee8354e44, type: 3}
-  ScenePath: Assets/Scenes/MainMenu.unity
-  ShortDescription: The Main Menu Scene Scriptable Object
+  SceneAsset: {fileID: 102900000, guid: 9d175fcae8b25ad4bb370fea4d89a7b0, type: 3}
+  ScenePath: Assets/Scenes/GamePlay.unity
+  ShortDescription: Gameplay Scene SO
   Music: {fileID: 0}

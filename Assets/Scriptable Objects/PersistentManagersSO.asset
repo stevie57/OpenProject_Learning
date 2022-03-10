@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SceneAsset: {fileID: 102900000, guid: 1b94ec6d4bf955a4597fc7cb7931f40d, type: 3}
   ScenePath: Assets/Scenes/PersistentManagers.unity
-  ShortDescription: Persistent Game Managers that should be in every game scene
+  ShortDescription: Persistent Game Managers Scene Scriptable Object that should
+    be in every scene
   Music: {fileID: 0}
