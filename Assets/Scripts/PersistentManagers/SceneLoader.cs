@@ -9,6 +9,9 @@ public class SceneLoader : MonoBehaviour
     [Header("Persistent Manager Scene")]
     [SerializeField] private GameSceneSO _persistentManagersScene = default;
 
+    [Header("Gameplay Scene")]
+    [SerializeField] private GameSceneSO _gameplayScene = default;
+
     [Header("Event Channels Listening")]
     //The level load event we are listening to
     [SerializeField] private LoadEventChannelSO _loadLevel = default;
@@ -42,6 +45,7 @@ public class SceneLoader : MonoBehaviour
     private void LoadLevel(GameSceneSO[] scenesToLoad, bool showLoadingScreen)
     {
         _persistentScenes.Add(_persistentManagersScene);
+        _persistentScenes.Add(_gameplayScene);
         AddScenesToUnload(_persistentScenes);
         LoadScenes(scenesToLoad, showLoadingScreen);
     }
@@ -56,18 +60,18 @@ public class SceneLoader : MonoBehaviour
 
     private void AddScenesToUnload(List<GameSceneSO> persistentScenes)
     {
-        for(int i = 0; i < SceneManager.sceneCount; i++)
+        for (int i = 0; i < SceneManager.sceneCount; ++i)
         {
             Scene scene = SceneManager.GetSceneAt(i);
             string scenePath = scene.path;
-
-            for(int j = 0; j < persistentScenes.Count; j++)
+            for (int j = 0; j < persistentScenes.Count; ++j)
             {
-                if(scenePath != persistentScenes[j].ScenePath)
+                if (scenePath != persistentScenes[j].ScenePath)
                 {
                     //Check if we reached the last persistent scenes check
                     if (j == persistentScenes.Count - 1)
                     {
+                        //If the scene is not one of the persistent scenes, we add it to the scenes to unload
                         _scenesToUnload.Add(scene);
                     }
                 }
@@ -83,20 +87,19 @@ public class SceneLoader : MonoBehaviour
     {
         //Take the first scene in the array as the scene we want to set active
         _activeScene = scenesToLoad[0];
-
         UnloadScenes();
 
         if (showLoadingScreen)
         {
-            // implement a loading screen event
+            //_ToggleLoadingScreen.RaiseEvent(true);
         }
 
-        if(_scenesToLoadAsyncOperations.Count == 0)
+        if (_scenesToLoadAsyncOperations.Count == 0)
         {
-            for(int i = 0; i < scenesToLoad.Length; i++)
+            for (int i = 0; i < scenesToLoad.Length; i++)
             {
                 string currentScenePath = scenesToLoad[i].ScenePath;
-                _scenesToLoadAsyncOperations.Add(SceneManager.LoadSceneAsync(currentScenePath));
+                _scenesToLoadAsyncOperations.Add(SceneManager.LoadSceneAsync(currentScenePath, LoadSceneMode.Additive));
             }
         }
 
@@ -106,21 +109,19 @@ public class SceneLoader : MonoBehaviour
         {
             if (IsSceneLoaded(_persistentScenes[i].ScenePath) == false)
             {
-                print($"Persistent Scenes check is false");
                 _scenesToLoadAsyncOperations.Add(SceneManager.LoadSceneAsync(_persistentScenes[i].ScenePath, LoadSceneMode.Additive));
             }
-            print("Persistent scene managers found");
         }
         StartCoroutine(WaitForLoading(showLoadingScreen));
-
     }
 
     private IEnumerator WaitForLoading(bool showLoadingScreen)
     {
-        bool loadingDone = false;
-        while (!loadingDone)
+        bool _loadingDone = false;
+        // Wait until all scenes are loaded
+        while (!_loadingDone)
         {
-            for(int i = 0; i < _scenesToLoadAsyncOperations.Count; i++)
+            for (int i = 0; i < _scenesToLoadAsyncOperations.Count; ++i)
             {
                 if (!_scenesToLoadAsyncOperations[i].isDone)
                 {
@@ -128,14 +129,14 @@ public class SceneLoader : MonoBehaviour
                 }
                 else
                 {
-                    loadingDone = true;
+                    _loadingDone = true;
                     _scenesToLoadAsyncOperations.Clear();
                     _persistentScenes.Clear();
                 }
             }
             yield return null;
         }
-
+        //Set the active scene
         SetActiveScene();
         if (showLoadingScreen)
         {
@@ -167,15 +168,14 @@ public class SceneLoader : MonoBehaviour
 
     private bool IsSceneLoaded(string ScenePath)
     {
-        for(int i = 0; i < SceneManager.sceneCount; i++)
+        for (int i = 0; i < SceneManager.sceneCount; i++)
         {
             Scene scene = SceneManager.GetSceneAt(i);
-            if(scene.path == ScenePath)
+            if (scene.path == ScenePath)
             {
                 return true;
             }
         }
-
         return false;
     }
 }

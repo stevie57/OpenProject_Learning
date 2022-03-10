@@ -171,6 +171,7 @@ MonoBehaviour:
     type: 2}
   _scenesToLoad:
   - {fileID: 11400000, guid: 6c389bd9ce5505944a8ebc7a6313c30b, type: 2}
+  - {fileID: 11400000, guid: f21d21ed830940f4f946459405218fcc, type: 2}
   _showLoadingScreen: 0
   _menuLoadChannel: {fileID: 11400000, guid: 987016b47c7aa8049be7c401e5be2ba2, type: 2}
   _levelLoadChannel: {fileID: 11400000, guid: d5e2e8fe0a97406449fe80deced8bb7e, type: 2}
