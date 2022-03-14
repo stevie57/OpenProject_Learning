@@ -15,7 +15,6 @@ public class InitializationLoader : MonoBehaviour
     [SerializeField] private LoadEventChannelSO _menuLoadChannel = default;
     [SerializeField] private LoadEventChannelSO _levelLoadChannel = default;
 
-
     void Start()
     {
         StartCoroutine(LoadSceneRoutine(_persistentManagersScene.ScenePath));
