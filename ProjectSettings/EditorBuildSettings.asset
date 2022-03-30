@@ -12,15 +12,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Initializer.unity
     guid: c9631eb552f5b1e4c9c9aa927219c6aa
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
+    path: Assets/Scenes/TestScenes/MainMenu.unity
     guid: 62e479061f1219a4d8c4682ee8354e44
   - enabled: 1
-    path: Assets/Scenes/PersistentManagers.unity
+    path: Assets/Scenes/TestScenes/PersistentManagers.unity
     guid: 1b94ec6d4bf955a4597fc7cb7931f40d
   - enabled: 1
     path: Assets/Scenes/GamePlay.unity
     guid: 9d175fcae8b25ad4bb370fea4d89a7b0
   - enabled: 1
-    path: Assets/Scenes/SceneB.unity
+    path: Assets/Scenes/SceneC.unity
     guid: a494ab6c7f72aca438a3a78464fb907e
   m_configObjects: {}

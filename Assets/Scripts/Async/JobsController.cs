@@ -80,8 +80,6 @@ public class JobsController : MonoBehaviour
 
     private async void ReallyToughTaskAsync()
     {
-
-
         var token = _cancellationTokenSource.Token;
         await Task.Run(() =>
         {

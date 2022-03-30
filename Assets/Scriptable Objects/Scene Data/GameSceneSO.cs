@@ -9,7 +9,4 @@ public abstract partial class GameSceneSO : ScriptableObject
 
     public string ScenePath;
     [TextArea] public string ShortDescription;
-
-    [Header("Sounds")]
-    public AudioClip Music;
 }

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d797b6b6d6f73f74e896263df802fe59, type: 3}
-  m_Name: PersistentManagersSO
+  m_Name: PersistentManagersSceneSO
   m_EditorClassIdentifier: 
   SceneAsset: {fileID: 102900000, guid: 1b94ec6d4bf955a4597fc7cb7931f40d, type: 3}
   ScenePath: Assets/Scenes/PersistentManagers.unity
